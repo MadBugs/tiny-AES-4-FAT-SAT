@@ -1,0 +1,50 @@
+TASKNAME     = AES_scan_attack_01_main
+
+CC           = gcc
+LD           = gcc
+AR           = ar
+ARFLAGS      = rcs
+CFLAGS       = -Wall -O3 -c
+LDFLAGS      = -Wall -O3 -Wl,-Map,$(TASKNAME).map
+
+OBJCOPYFLAGS = -j .text -O ihex
+OBJCOPY      = objcopy
+
+
+# include path to AVR library
+INCLUDE_PATH = /usr/lib/avr/include
+# splint static check
+SPLINT       = splint $(TASKNAME).c aes_SAT.c -I$(INCLUDE_PATH) +charindex -unrecog
+
+default: $(TASKNAME)
+
+.SILENT:
+.PHONY:  lint clean
+
+$(TASKNAME).hex : $(TASKNAME)
+	echo copy object-code to new image and format in hex
+	$(OBJCOPY) ${OBJCOPYFLAGS} $< $@
+
+$(TASKNAME).o : $(TASKNAME).c aes_SAT.h aes_SAT.o
+	echo [CC] $@ $(CFLAGS)
+	$(CC) $(CFLAGS) -o  $@ $<
+
+aes_SAT.o : aes_SAT.c aes_SAT.h
+	echo [CC] $@ $(CFLAGS)
+	$(CC) $(CFLAGS) -o $@ $<
+
+$(TASKNAME) : aes_SAT.o $(TASKNAME).o
+	echo [LD] $@
+	$(LD) $(LDFLAGS) -o $@ $^
+
+aes_SAT.a : aes_SAT.o
+	echo [AR] $@
+	$(AR) $(ARFLAGS) $@ $^
+
+lib : aes_SAT.a
+
+clean:
+	rm -f *.OBJ *.LST *.o *.gch *.out *.hex *.map $(TASKNAME) *.a
+
+lint:
+	$(call SPLINT)
