@@ -15,5 +15,5 @@ Have fun.
 
 JLima.
 
-PS. You are on your own to debug this unless I know (and like) you. :-). Not kidding.
+PS. You are on your own to debug this. Maybe not.
 
