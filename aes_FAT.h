@@ -71,6 +71,13 @@ struct AES_ctx
 
 typedef long long unsigned int   llu_t;
 
+/*
+Esc[ValueA  Move cursor up n lines  CUU
+Esc[ValueB  Move cursor down n lines    CUD
+Esc[ValueC  Move cursor right n lines   CUF
+Esc[ValueD  Move cursor left n lines    CUB
+*/
+
 #define MAX_SIZE_COLOR_ESC_SEQ  10 // Hope it is big enough
 #ifdef  ENABLE_COLOR_OUTPUT
 #define PEN_NC()       printf("\e[0m")         // NC - Normal Color

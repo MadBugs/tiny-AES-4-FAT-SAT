@@ -336,7 +336,7 @@ int main(int argc, char *argv[])
   if (!error)
   {
     n = sscanf(argv[1], "%d", &aux);
-printf("XXXXXXXXX aux=%d\n", aux);
+    //printf("XXXXXXXXX aux=%d\n", aux);
     if ((aux!=0) && (aux!=1) && (aux!=2) && (aux!=21) && 
         (aux!=23) && (aux!=-1) && (aux!=-2))             error=1;
   }
@@ -377,31 +377,38 @@ printf("XXXXXXXXX aux=%d\n", aux);
   {
     case 0:
       AT = ATTACK_00; AT_sub = NO_SUBTYPE; max_ffs_stuck=10;
-      p_attack_type =   "AT0"; p_gist = "**ATACK 00** Attacking M10 - Before AddRoundKey() just to warm up (KEYM)\n";
+      p_attack_type =   "AT0";
+      p_gist = "**ATACK 00** Attacking M10 - Before AddRoundKey() just to warm up (KEYM)\n";
     break;
     case 1:
       AT = ATTACK_01; AT_sub = NO_SUBTYPE; max_ffs_stuck=1; // Has to be only one at time
-      p_attack_type =   "AT1"; p_gist = "**ATACK 01** Attacking M10 - Before SubBytes() via Giraud's Approach (KEYM)\n";
+      p_attack_type =   "AT1";
+      p_gist = "**ATACK 01** Attacking M10 - Before SubBytes() via Giraud's Approach (KEYM)\n";
     break;
     case 2:
       AT = ATTACK_02; AT_sub = NO_SUBTYPE; max_ffs_stuck=1; // Has to be only one at time
-      p_attack_type =   "AT2"; p_gist = "**ATACK 02** Attacking M9 - Before SubBytes() via Statistical Approach (KEYM)\n";
+      p_attack_type =   "AT2";
+      p_gist = "**ATACK 02** Attacking M9 - Before SubBytes() via Statistical Approach (KEYM)\n";
     break;
     case 21:
       AT = ATTACK_02; AT_sub = ATTACK_02_USED_FOR_01; max_ffs_stuck=1; // Has to be only one at time
-      p_attack_type = "AT2_1"; p_gist = "**ATACK 01(2)** Attacking M10 - Before SubBytes() via Statistical Approach (KEYM)\n";
+      p_attack_type = "AT2_1";
+      p_gist = "**ATACK 01(2)** Attacking M10 - Before SubBytes() via Statistical Approach (KEYM)\n";
     break;
     case 23:
       AT = ATTACK_02; AT_sub = ATTACK_02_USED_FOR_03; max_ffs_stuck=1; // Has to be only one at time
-      p_attack_type = "AT2_3"; p_gist = "**ATACK 03(2)** Attacking M8  - Before SubBytes() via Statistical Approach (KEYM) - Just for fun - It will fail for sure\n";
+      p_attack_type = "AT2_3";
+      p_gist = "**ATACK 03(2)** Attacking M8  - Before SubBytes() via Statistical Approach (KEYM) - Just for fun - It will fail for sure\n";
     break;
     case -1:
       AT = ATTACK_02; AT_sub = ATTACK_02_NO_ATTACK  ; max_ffs_stuck=0; // Has to be only one at time
-      p_attack_type = "AT2_NO_FAULT"; p_gist = "**ATACK -1(2)** Not really causing faults and not attacking anything - just collecting statistics (KEYM)\n";
+      p_attack_type = "AT2_NO_FAULT";
+      p_gist = "**ATACK -1(2)** Not really causing faults and not attacking anything - just collecting statistics (KEYM)\n";
     break;
     case -2:
       AT = ATTACK_02; AT_sub = ATTACK_02_FLIP_PT_1BIT  ; max_ffs_stuck=1; // Has to be only one at time
-      p_attack_type = "AT2_FLIP_PT_1BIT_ONLY"; p_gist = "**ATACK -2(2)** Not really causing faults - flips on bit in the PlainText - just collecting statistics (KEYM)\n";
+      p_attack_type = "AT2_FLIP_PT_1BIT_ONLY";
+      p_gist = "**ATACK -2(2)** Not really causing faults - flips on bit in the PlainText - just collecting statistics (KEYM)\n";
     break;
   }
 

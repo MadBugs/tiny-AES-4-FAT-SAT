@@ -1,0 +1,43 @@
+# ------------------------------------------------------------------
+# NOTE: use 'less -rS' instead of 'less' or 'more' so the color 
+# chars will not makes the terminal to wrap-up
+# ------------------------------------------------------------------
+
+# Do this for no attack - Will just run and show
+# AES encryption workflow
+./AES_fault_attack_01_main -1 2 stats | less -rS
+
+# Do this for no attack to flip a bit in the Plain Text
+# No faults but shows how the difference progates
+./AES_fault_attack_01_main -2 2 stats | less -rS
+
+# **ATACK 00** Attacking M10 - Before AddRoundKey() just to warm up
+./AES_fault_attack_01_main 0 2 stats | less -rS
+
+# **ATACK 01** Attacking M10 - Before SubBytes() via Giraud's Approach 
+./AES_fault_attack_01_main 1 2 stats | less -rS
+
+# **ATACK 02** Attacking M9 - Before SubBytes() via Statistical Approach
+./AES_fault_attack_01_main 2 2 stats | less -rS
+
+# **ATACK 01(2)** Attacking M10 - Before SubBytes() via Statistical Approach
+./AES_fault_attack_01_main 21 2 stats | less -rS
+
+#**ATACK 03(2)** Attacking M8  - Before SubBytes() via Statistical Approach
+# - Just for fun - It will fail for sure
+./AES_fault_attack_01_main 21 2 stats | less -rS
+
+# ---
+# Use egrep to filter what is important in the run:
+./AES_fault_attack_01_main 21 1 stats | egrep "KEYM|COUNTx" 
+# or
+./AES_fault_attack_01_main 21 1 stats | egrep "KEYM|COUNTx" | more
+# Changing the tokens filters what is printed
+# This program prints a lot
+
+# ---
+$ ./AES_fault_attack_01_main
+SYNTAX: ./AES_fault_attack_01_main ATTACK_TYPE  [number_of_runs  stats]
+ATTACK_TYPE can be 0|1|2|21|23|-1|-2
+PLEASE choose one of the numbers displayed above
+Have a good day...
