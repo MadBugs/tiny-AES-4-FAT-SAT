@@ -398,6 +398,7 @@ printf("XXXXXXXXX aux=%d\n", aux);
     case -1:
       AT = ATTACK_02; AT_sub = ATTACK_02_NO_ATTACK  ; max_ffs_stuck=0; // Has to be only one at time
       p_attack_type = "AT2_NO_FAULT"; p_gist = "**ATACK -1(2)** Not really causing faults and not attacking anything - just collecting statistics (KEYM)\n";
+    break;
     case -2:
       AT = ATTACK_02; AT_sub = ATTACK_02_FLIP_PT_1BIT  ; max_ffs_stuck=1; // Has to be only one at time
       p_attack_type = "AT2_FLIP_PT_1BIT_ONLY"; p_gist = "**ATACK -2(2)** Not really causing faults - flips on bit in the PlainText - just collecting statistics (KEYM)\n";
