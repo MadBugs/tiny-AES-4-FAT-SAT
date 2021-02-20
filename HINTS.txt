@@ -11,23 +11,28 @@
 # No faults but shows how the difference progates
 ./AES_fault_attack_01_main -2 2 stats | less -rS
 
-# **ATACK 00** Attacking M10 - Before AddRoundKey() just to warm up
+(EASIER)
+# **ATACK 00** Attacking M10 - Before AddRoundKey() just to warm up 
 ./AES_fault_attack_01_main 0 2 stats | less -rS
 
+(HARDER)
 # **ATACK 01** Attacking M10 - Before SubBytes() via Giraud's Approach 
 ./AES_fault_attack_01_main 1 2 stats | less -rS
 
+(MUCH HARDER)
 # **ATACK 02** Attacking M9 - Before SubBytes() via Statistical Approach
 ./AES_fault_attack_01_main 2 2 stats | less -rS
 
+(HARDER)
 # **ATACK 01(2)** Attacking M10 - Before SubBytes() via Statistical Approach
 ./AES_fault_attack_01_main 21 2 stats | less -rS
 
+(MUCH MUCH HARDER - CODE FAILS FOR THIS ONE) 
 #**ATACK 03(2)** Attacking M8  - Before SubBytes() via Statistical Approach
 # - Just for fun - It will fail for sure
-./AES_fault_attack_01_main 21 2 stats | less -rS
+./AES_fault_attack_01_main 23 2 stats | less -rS
 
-# ---
+# ---------------------------------------------------------------
 # Use egrep to filter what is important in the run:
 ./AES_fault_attack_01_main 21 1 stats | egrep "KEYM|COUNTx" 
 # or
