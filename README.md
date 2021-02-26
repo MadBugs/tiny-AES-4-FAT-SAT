@@ -1,6 +1,6 @@
 ### SAT and FAT attacks using the 'Tiny AES in C' library https://github.com/kokke/tiny-AES-C
 
-** DISCLAIM: THIS CODE is authorized to be used only for academic purposes and legal uses
+** DISCLAIMER: THIS CODE is authorized to be used only for academic purposes and legal uses
    to improve cybersecurity. Any use of this code for illegal activities stated by the law are not
    authorized. This statement exceeds and restrics any license terms stated in this repository. **
 
