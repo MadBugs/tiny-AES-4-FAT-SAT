@@ -78,17 +78,45 @@ Esc[ValueC  Move cursor right n lines   CUF
 Esc[ValueD  Move cursor left n lines    CUB
 */
 
-#define MAX_SIZE_COLOR_ESC_SEQ  10 // Hope it is big enough
 #ifdef  ENABLE_COLOR_OUTPUT
-#define PEN_NC()       printf("\e[0m")         // NC - Normal Color
-#define PEN_NORMAL()   PEN_NC()                // NC - Normal Color
-#define PEN_RED()      printf("\e[1;31m")
-#define PEN_GREEN()    printf("\e[1;32m")
-#define PEN_YELLOW()   printf("\e[1;33m")
-#define PEN_BLUE()     printf("\e[1;34m")
-#define PEN_MARGENTA() printf("\e[1;35m")
-#define PEN_CYAN()     printf("\e[1;36m")
-#define PEN_WHITE()    printf("\e[1;37m")
+#define MAX_SIZE_COLOR_ESC_SEQ  10 // Hope it is big enough
+enum Pen_Colors_t
+{
+  NORMAL,
+  NC=NORMAL,
+  RED,
+  GREEN,
+  YELLOW,
+  BLUE,
+  MARGENTA,
+  CYAN,
+  WHITE
+};
+
+# ifdef MAIN_
+enum Pen_Colors_t isC=NC;
+void PEN_NORMAL()   {if (isC!=NORMAL)   {printf("\e[0m");    isC=NORMAL;}}
+void PEN_NC()       {if (isC!=NC)       {printf("\e[0m");    isC=NC;}}
+void PEN_RED()      {if (isC!=RED)      {printf("\e[1;31m"); isC=RED;}}
+void PEN_GREEN()    {if (isC!=GREEN)    {printf("\e[1;32m"); isC=GREEN;}}
+void PEN_YELLOW()   {if (isC!=YELLOW)   {printf("\e[1;33m"); isC=YELLOW;}}
+void PEN_BLUE()     {if (isC!=BLUE)     {printf("\e[1;34m"); isC=BLUE;}}
+void PEN_MARGENTA() {if (isC!=MARGENTA) {printf("\e[1;35m"); isC=MARGENTA;}}
+void PEN_CYAN()     {if (isC!=CYAN)     {printf("\e[1;36m"); isC=CYAN;}}
+void PEN_WHITE()    {if (isC!=WHITE)    {printf("\e[1;37m"); isC=WHITE;}}
+# else
+extern enum Pen_Colors_t isC;
+extern void PEN_NC()     ;
+extern void PEN_YELLOW() ;
+extern void PEN_RED()    ;
+extern void PEN_GREEN()  ;
+extern void PEN_BLUE()   ;
+extern void PEN_MARGENTA();
+extern void PEN_CYAN()   ;
+extern void PEN_WHITE()  ;
+extern void PEN_NORMAL() ;
+# endif
+
 #else
 #define PEN_NC()     
 #define PEN_YELLOW() 
@@ -97,8 +125,10 @@ Esc[ValueD  Move cursor left n lines    CUB
 #define PEN_BLUE()   
 #define PEN_MARGENTA()
 #define PEN_CYAN()   
-#define PEN_WHITE()
-#endif
+#define PEN_WHITE()  
+#define PEN_NORMAL() 
+
+#endif /* End of ENABLE_COLOR_OUTPUT */
 
 #if 0
 # Define some colors first (you can put this in your .bashrc file):
